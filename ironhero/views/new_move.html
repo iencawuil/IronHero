@@ -1,0 +1,28 @@
+{% extends "base_templates/base.html" %}
+{% block title %} NEW MOVE {% endblock %}
+{% block content %} this is the new activity page 
+<br/>
+<br/>
+
+<form name="new_activity" action="" method="post">
+	<div id="form_left">
+		Enter a new move:</br>
+<input type="text" name="move_name" id="moveName" />
+<select name="equipment">
+<option value="None">None</option>
+<option value="barbell">Barbell</option>
+<option value="Dumbbells">Dumbbells</option>
+<option value="Kettlebell">Kettlebell</option>
+</select>
+<input type="submit" action="submit" value="submit"></input>
+</form>
+
+<script>
+
+function moveDetailRequestCompleted(responseText,textStatus,request)
+{
+	console.log(responseText);
+}
+
+</script>
+{% endblock %}

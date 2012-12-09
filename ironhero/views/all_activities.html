@@ -1,0 +1,36 @@
+{% extends "base_templates/base.html" %}
+{% block title %} MAIN PAGE {% endblock %}
+{% block content %} 
+<script>
+
+
+function clicked()
+{
+	$.get('rpc?action=allMoves',movesReturned)
+	
+}
+
+function movesReturned(responseText,textStatus,request)
+{
+	console.log(responseText);
+	var model = new MoveViewModel(responseText);
+	ko.applyBindings(model);
+}
+
+function MoveViewModel(moveList)
+{	
+	var self = this;
+	moves = $.parseJSON(moveList);
+	self.moves = ko.observableArray(moves);
+}
+
+
+</script>
+<input type="button" value="load moves" onclick="clicked()"></input>
+<div id="loader">
+	<div id="loader_body" data-bind="foreach: moves">
+		<div data-bind="text: name"></div>
+	</div>
+</div>
+
+{% endblock %}
